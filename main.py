@@ -39,6 +39,14 @@ class PipelineData(BaseModel):
     edges: List[Edge]
 
 def is_valid_pipeline(nodes, edges):
+
+   # ❌ No nodes → invalid pipeline
+    if not nodes:
+        return False
+
+    if len(nodes) == 1 and not edges:
+        return True
+
     graph = {n.id: [] for n in nodes}
     reverse_graph = {n.id: [] for n in nodes}
 
